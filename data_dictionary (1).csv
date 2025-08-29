@@ -1,0 +1,52 @@
+column,dtype,non_null,nulls
+ASAT Days,int64,1106,0
+ASAT Group,object,1106,0
+ASAT Theme,object,237,869
+ASAT Verbatim Group,object,1106,0
+ASAT_Bucket,object,1106,0
+Bank IVR Skill,object,1106,0
+CALL_TYPE,object,1106,0
+CLASSIFICATION,object,916,190
+CONTRACT_ID,object,1106,0
+CSAT Days,int64,1106,0
+CSAT Group,object,1106,0
+CSAT Theme,object,1106,0
+CSAT Verbatim Group,object,1106,0
+CSAT Verbatim and Classification Group,object,1106,0
+CSAT score,int64,1106,0
+CSAT_Bucket,object,1106,0
+Category Summary: What are your most important reasons for giving us that score?,object,895,211
+Completed Date,object,1106,0
+Completed Date 2,object,1106,0
+Date Convert,object,1106,0
+FCR,object,1008,98
+FCR No,int64,1106,0
+FCR Yes,int64,1106,0
+FCR_Flag,float64,1008,98
+FCR_Total,int64,1106,0
+How could the consultant improve how they handled your enquiry?,object,400,706
+How would you rate the service you received from the consultant handling your enquiry?,int64,1106,0
+ID,object,1106,0
+INTERACTION_DATE,datetime64[ns],1104,2
+Month,Int64,1104,2
+OPERATOR,object,1106,0
+Other and Non product Validation,float64,0,1106
+PRIMARY_DIVISION,object,1106,0
+Respondent Id,int64,1106,0
+SUBCATEGORY,object,940,166
+Sub-Product,object,833,273
+Supervisor,object,1106,0
+TEXT_ALL,object,1106,0
+Theme - Good,object,4,1102
+Theme - Improve,object,394,712
+"Thinking about your call, was your enquiry resolved?",object,1106,0
+Tribe,object,1106,0
+Tribe Copy,object,1106,0
+Wave,int64,1106,0
+Week,Int64,1104,2
+Week Ending,object,1106,0
+We’d love to know what the consultant did to earn such a rating?,object,460,646
+What are your most important reasons for giving us that score?,object,898,208
+Work Type,object,1106,0
+_clean,object,1106,0
+topic_id,float64,1106,0

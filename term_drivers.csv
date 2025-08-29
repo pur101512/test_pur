@@ -1,0 +1,161 @@
+segment,ngram,term,count
+Low CSAT,unigram,nan,514
+Low CSAT,unigram,amp,225
+Low CSAT,unigram,call,188
+Low CSAT,unigram,account,183
+Low CSAT,unigram,phone,94
+Low CSAT,unigram,could,93
+Low CSAT,unigram,what,92
+Low CSAT,unigram,all,90
+Low CSAT,unigram,would,90
+Low CSAT,unigram,back,85
+Low CSAT,unigram,get,81
+Low CSAT,unigram,customer,81
+Low CSAT,unigram,which,80
+Low CSAT,unigram,issue,79
+Low CSAT,unigram,time,77
+Low CSAT,unigram,when,76
+Low CSAT,unigram,bank,76
+Low CSAT,unigram,told,75
+Low CSAT,unigram,email,75
+Low CSAT,unigram,still,75
+Low CSAT,unigram,interest,72
+Low CSAT,unigram,information,70
+Low CSAT,unigram,understand,69
+Low CSAT,unigram,after,68
+Low CSAT,unigram,loan,62
+Low CSAT,unigram,can,61
+Low CSAT,unigram,service,56
+Low CSAT,unigram,will,56
+Low CSAT,unigram,deposit,53
+Low CSAT,unigram,process,52
+Low CSAT,unigram,request,52
+Low CSAT,unigram,other,50
+Low CSAT,unigram,there,49
+Low CSAT,unigram,term,49
+Low CSAT,unigram,again,49
+Low CSAT,unigram,help,48
+Low CSAT,unigram,asked,47
+Low CSAT,unigram,who,47
+Low CSAT,unigram,staff,47
+Low CSAT,unigram,hold,43
+Low CSAT,bigram,nan nan,94
+Low CSAT,bigram,term deposit,39
+Low CSAT,bigram,customer service,36
+Low CSAT,bigram,call centre,28
+Low CSAT,bigram,call back,26
+Low CSAT,bigram,phone calls,20
+Low CSAT,bigram,savings account,20
+Low CSAT,bigram,interest rate,18
+Low CSAT,bigram,amp bank,16
+Low CSAT,bigram,still waiting,15
+Low CSAT,bigram,phone call,15
+Low CSAT,bigram,even though,15
+Low CSAT,bigram,put hold,15
+Low CSAT,bigram,home loan,14
+Low CSAT,bigram,other banks,14
+Low CSAT,bigram,resolve issue,13
+Low CSAT,bigram,understand what,12
+Low CSAT,bigram,offset account,12
+Low CSAT,bigram,hard understand,11
+Low CSAT,bigram,bank account,11
+Low CSAT,bigram,nan don,11
+Low CSAT,bigram,said would,10
+Low CSAT,bigram,bonus interest,10
+Low CSAT,bigram,too long,10
+Low CSAT,bigram,multiple times,10
+Low CSAT,bigram,difficult understand,10
+Low CSAT,bigram,nan could,10
+Low CSAT,bigram,resolved nan,9
+Low CSAT,bigram,email address,9
+Low CSAT,bigram,simple request,9
+Low CSAT,bigram,long time,9
+Low CSAT,bigram,business days,8
+Low CSAT,bigram,received email,8
+Low CSAT,bigram,called back,8
+Low CSAT,bigram,amp nan,8
+Low CSAT,bigram,get back,8
+Low CSAT,bigram,saver account,7
+Low CSAT,bigram,internet banking,7
+Low CSAT,bigram,could help,7
+Low CSAT,bigram,loan account,7
+High CSAT,unigram,nan,436
+High CSAT,unigram,helpful,87
+High CSAT,unigram,service,51
+High CSAT,unigram,good,37
+High CSAT,unigram,polite,25
+High CSAT,unigram,customer,25
+High CSAT,unigram,problem,24
+High CSAT,unigram,amp,24
+High CSAT,unigram,patient,24
+High CSAT,unigram,friendly,24
+High CSAT,unigram,efficient,23
+High CSAT,unigram,all,23
+High CSAT,unigram,professional,23
+High CSAT,unigram,great,22
+High CSAT,unigram,issue,22
+High CSAT,unigram,what,22
+High CSAT,unigram,easy,20
+High CSAT,unigram,phone,20
+High CSAT,unigram,resolved,19
+High CSAT,unigram,understanding,17
+High CSAT,unigram,call,17
+High CSAT,unigram,help,16
+High CSAT,unigram,answered,16
+High CSAT,unigram,excellent,14
+High CSAT,unigram,staff,14
+High CSAT,unigram,well,14
+High CSAT,unigram,time,14
+High CSAT,unigram,questions,13
+High CSAT,unigram,query,13
+High CSAT,unigram,enquiry,13
+High CSAT,unigram,account,12
+High CSAT,unigram,listened,12
+High CSAT,unigram,pleasant,12
+High CSAT,unigram,prompt,12
+High CSAT,unigram,solved,11
+High CSAT,unigram,able,11
+High CSAT,unigram,person,11
+High CSAT,unigram,through,11
+High CSAT,unigram,when,11
+High CSAT,unigram,thank,11
+High CSAT,bigram,nan nan,130
+High CSAT,bigram,helpful nan,19
+High CSAT,bigram,customer service,19
+High CSAT,bigram,helpful polite,9
+High CSAT,bigram,easy deal,6
+High CSAT,bigram,polite helpful,6
+High CSAT,bigram,service nan,6
+High CSAT,bigram,friendly helpful,6
+High CSAT,bigram,thank nan,5
+High CSAT,bigram,knowledgeable nan,5
+High CSAT,bigram,friendly efficient,5
+High CSAT,bigram,efficient nan,5
+High CSAT,bigram,issue nan,5
+High CSAT,bigram,answered all,5
+High CSAT,bigram,solved problem,5
+High CSAT,bigram,polite nan,5
+High CSAT,bigram,prompt service,5
+High CSAT,bigram,interest rates,5
+High CSAT,bigram,term deposit,4
+High CSAT,bigram,answered query,4
+High CSAT,bigram,hard understand,4
+High CSAT,bigram,exactly what,4
+High CSAT,bigram,patient helpful,4
+High CSAT,bigram,what required,4
+High CSAT,bigram,what wanted,4
+High CSAT,bigram,always helpful,4
+High CSAT,bigram,quickly nan,4
+High CSAT,bigram,straight away,4
+High CSAT,bigram,problem nan,4
+High CSAT,bigram,enquiry nan,4
+High CSAT,bigram,solve issue,4
+High CSAT,bigram,extremely helpful,4
+High CSAT,bigram,all questions,4
+High CSAT,bigram,first time,4
+High CSAT,bigram,good service,3
+High CSAT,bigram,promptly nan,3
+High CSAT,bigram,helpful professional,3
+High CSAT,bigram,good communication,3
+High CSAT,bigram,well nan,3
+High CSAT,bigram,took time,3
