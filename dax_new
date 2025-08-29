@@ -1,0 +1,97 @@
+/* =========================
+   FACTS — CORE MEASURES
+   ========================= */
+
+-- Counts & Averages
+Responses =
+COUNTROWS ( 'Facts' )
+
+Avg CSAT =
+AVERAGE ( 'Facts'[CSAT score] )
+
+-- ASAT: pick ONE of these two and delete the other
+-- (A) If your column is literally named "ASAT score":
+-- Avg ASAT = AVERAGE ( 'Facts'[ASAT score] )
+
+-- (B) If your column is the long survey question:
+Avg ASAT =
+AVERAGE ( 'Facts'[How would you rate the service you received from the consultant handling your enquiry?] )
+
+
+/* Buckets */
+Low CSAT Count =
+CALCULATE ( [Responses], 'Facts'[CSAT_Bucket] = "Low" )
+
+Med CSAT Count =
+CALCULATE ( [Responses], 'Facts'[CSAT_Bucket] = "Medium" )
+
+High CSAT Count =
+CALCULATE ( [Responses], 'Facts'[CSAT_Bucket] = "High" )
+
+Low CSAT % =
+DIVIDE ( [Low CSAT Count], [Responses] )
+
+High CSAT % =
+DIVIDE ( [High CSAT Count], [Responses] )
+
+
+/* FCR — pick ONE version */
+
+-- (A) If you have separate "FCR Yes" and "FCR No" numeric columns:
+FCR Yes =
+SUM ( 'Facts'[FCR Yes] )
+
+FCR No =
+SUM ( 'Facts'[FCR No] )
+
+FCR Rate =
+DIVIDE ( [FCR Yes], [FCR Yes] + [FCR No] )
+
+-- (B) If instead you have a single 0/1 flag column "FCR_Flag":
+-- FCR Rate = AVERAGE ( 'Facts'[FCR_Flag] )
+
+
+/* Agent helpers */
+Cases (Agent) =
+COUNTROWS ( 'Facts' )
+
+-- Create a What-if parameter called 'Min Cases' (numeric), then:
+Show Agent =
+VAR minCases = SELECTEDVALUE ( 'Min Cases'[Min Cases Value], 30 )
+RETURN IF ( [Cases (Agent)] >= minCases, 1, 0 )
+
+
+/* Rolling (7 days) — pick ONE date column */
+
+-- (A) If you have "Completed Date":
+CSAT Rolling 7d =
+VAR d = MAX ( 'Facts'[Completed Date] )
+RETURN
+AVERAGEX (
+    DATESINPERIOD ( 'Facts'[Completed Date], d, -7, DAY ),
+    CALCULATE ( AVERAGE ( 'Facts'[CSAT score] ) )
+)
+
+-- (B) If your date column is "INTERACTION_DATE", use this instead:
+-- CSAT Rolling 7d =
+-- VAR d = MAX ( 'Facts'[INTERACTION_DATE] )
+-- RETURN
+-- AVERAGEX (
+--     DATESINPERIOD ( 'Facts'[INTERACTION_DATE], d, -7, DAY ),
+--     CALCULATE ( AVERAGE ( 'Facts'[CSAT score] ) )
+-- )
+
+
+/* BERTopic measures */
+Topic Count =
+COUNTROWS ( 'Facts' )
+
+-- Overall CSAT with any topic filters removed (assumes BERTopic id column exists)
+Avg CSAT (Overall, Ignore Topic) =
+CALCULATE (
+    [Avg CSAT],
+    REMOVEFILTERS ( 'Facts'[topic_id_bertopic] )
+)
+
+Topic CSAT Delta =
+[Avg CSAT] - [Avg CSAT (Overall, Ignore Topic)]
