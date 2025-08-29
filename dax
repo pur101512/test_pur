@@ -1,0 +1,50 @@
+-- Counts & averages
+Responses = COUNTROWS('Facts')
+Avg CSAT  = AVERAGE('Facts'[CSAT score])
+Avg ASAT  = AVERAGE('Facts'[ASAT score])
+
+-- Buckets
+Low CSAT Count   = CALCULATE([Responses], 'Facts'[CSAT_Bucket] = "Low")
+Med CSAT Count   = CALCULATE([Responses], 'Facts'[CSAT_Bucket] = "Medium")
+High CSAT Count  = CALCULATE([Responses], 'Facts'[CSAT_Bucket] = "High")
+
+Low CSAT %  = DIVIDE([Low CSAT Count],  [Responses])
+High CSAT % = DIVIDE([High CSAT Count], [Responses])
+
+-- FCR (works if you have FCR Yes/No in the file)
+FCR Yes  = SUM('Facts'[FCR Yes])
+FCR No   = SUM('Facts'[FCR No])
+FCR Rate = DIVIDE([FCR Yes], [FCR Yes] + [FCR No])
+
+-- Per-agent basics
+Cases (Agent) = COUNTROWS('Facts')
+
+-- OPTIONAL: What-if parameter for fairness thresholds
+-- Modeling > New Parameter (Numeric) -> Name: Min Cases, Default 30, Range 0..100
+Show Agent =
+VAR minCases = SELECTEDVALUE('Min Cases'[Min Cases Value], 30)
+RETURN IF([Cases (Agent)] >= minCases, 1, 0)
+
+-- Bucket sort helper (so Low -> Medium -> High)
+CSAT Bucket Order =
+SWITCH(TRUE(),
+    SELECTEDVALUE('Facts'[CSAT_Bucket]) = "Low", 1,
+    SELECTEDVALUE('Facts'[CSAT_Bucket]) = "Medium", 2,
+    SELECTEDVALUE('Facts'[CSAT_Bucket]) = "High", 3
+)
+
+-- Rolling (optional)
+CSAT Rolling 7d =
+VAR d = MAX('Facts'[Completed Date])
+RETURN
+AVERAGEX(
+    DATESINPERIOD('Facts'[Completed Date], d, -7, DAY),
+    CALCULATE( AVERAGE('Facts'[CSAT score]) )
+)
+
+-- BERTopic-specific
+Topic Count = COUNTROWS('Facts')
+Avg CSAT (Overall, ignore topic) =
+CALCULATE([Avg CSAT], ALL('Facts'[topic_id_bertopic], 'Facts'[topic_label_bertopic]))
+Topic CSAT Δ = [Avg CSAT] - [Avg CSAT (Overall)]
+Low CSAT % (Topic) = [Low CSAT %]   -- alias for clarity on topic visuals
