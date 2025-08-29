@@ -1,0 +1,93 @@
+/* =========================================
+   MEASURES — FACTS (BERTopic-ready, no deps)
+   ========================================= */
+
+-- Counts & Averages
+Responses =
+COUNTROWS ( 'Facts' )
+
+Avg CSAT =
+AVERAGE ( 'Facts'[CSAT score] )
+
+-- If your file uses "ASAT score", replace the column below with 'Facts'[ASAT score]
+Avg ASAT =
+AVERAGE ( 'Facts'[How would you rate the service you received from the consultant handling your enquiry?] )
+
+
+-- CSAT Buckets (counts & rates)
+Low CSAT Count =
+CALCULATE ( [Responses], 'Facts'[CSAT_Bucket] = "Low" )
+
+Med CSAT Count =
+CALCULATE ( [Responses], 'Facts'[CSAT_Bucket] = "Medium" )
+
+High CSAT Count =
+CALCULATE ( [Responses], 'Facts'[CSAT_Bucket] = "High" )
+
+Low CSAT % =
+DIVIDE ( [Low CSAT Count], [Responses] )
+
+High CSAT % =
+DIVIDE ( [High CSAT Count], [Responses] )
+
+
+-- FCR (using FCR Yes / FCR No columns)
+FCR Yes =
+SUM ( 'Facts'[FCR Yes] )
+
+FCR No =
+SUM ( 'Facts'[FCR No] )
+
+FCR Rate =
+DIVIDE ( [FCR Yes], [FCR Yes] + [FCR No] )
+
+
+-- Agent helpers (no What-If dependency to avoid errors)
+Cases (Agent) =
+COUNTROWS ( 'Facts' )
+
+-- Fixed fairness gate (30+ cases); change 30 if you like
+Show Agent (30+ cases) =
+IF ( [Cases (Agent)] >= 30, 1, 0 )
+
+
+-- Rolling (7-day) on Completed Date
+CSAT Rolling 7d =
+VAR d = MAX ( 'Facts'[Completed Date] )
+RETURN
+AVERAGEX (
+    DATESINPERIOD ( 'Facts'[Completed Date], d, -7, DAY ),
+    CALCULATE ( AVERAGE ( 'Facts'[CSAT score] ) )
+)
+
+
+/* --------
+   BERTopic
+   -------- */
+
+-- Topic volume (context-aware)
+Topic Count =
+COUNTROWS ( 'Facts' )
+
+-- Topic share of total (in current filters)
+Topic Share % =
+DIVIDE ( [Topic Count], [Responses] )
+
+-- Overall CSAT with topic filters removed (keeps all other page filters)
+Avg CSAT (Overall, Ignore Topic) =
+CALCULATE ( [Avg CSAT], REMOVEFILTERS ( 'Facts'[topic_id_bertopic] ) )
+
+-- Topic lift: how much this topic’s CSAT differs from overall
+Topic CSAT Delta =
+[Avg CSAT] - [Avg CSAT (Overall, Ignore Topic)]
+
+-- Low CSAT % (topic-context; alias provided for clarity on topic visuals)
+Low CSAT % (Topic) =
+[Low CSAT %]
+
+-- Optional composite: emphasize big/harmful topics (use on scatter/bars)
+-- Negative delta (worse than overall) * topic share; positive deltas clamp to 0
+Topic Severity Score =
+VAR delta = [Topic CSAT Delta]
+VAR share = [Topic Share %]
+RETURN IF ( delta < 0, -delta * share, 0 )
